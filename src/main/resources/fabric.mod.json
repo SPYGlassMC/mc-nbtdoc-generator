@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "rd",
+  "version": "${version}",
+
+  "name": "Registry Dump",
+  "description": "dumps some registry",
+  "authors": [
+    "MrYurihi"
+  ],
+
+  "license": "MIT",
+
+  "environment": "server",
+  "mixins": [
+    "rd.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.4.0"
+  }
+}
