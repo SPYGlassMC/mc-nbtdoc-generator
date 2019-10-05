@@ -35,7 +35,7 @@ public class Run {
 			Registry.REGISTRIES.getId(Registry.ITEM)
 		};
 		ImmutableMap<Identifier, String> ident2target = ImmutableMap.of(
-			regs[0], "items"
+			regs[0], "minecraft:item"
 		);
 		MappingResolver res = FabricLoader.getInstance().getMappingResolver();
 		PrintWriter mod = new PrintWriter(new FileWriter(new File(outpath + "/mod.nbtdoc")));
