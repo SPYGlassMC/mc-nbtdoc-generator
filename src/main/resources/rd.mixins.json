@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "mryurihi.rd.mixin",
+  "package": "yurihaia.rd.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],

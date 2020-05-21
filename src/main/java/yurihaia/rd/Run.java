@@ -1,4 +1,4 @@
-package mryurihi.rd;
+package yurihaia.rd;
 
 import java.io.File;
 import java.io.FileReader;
@@ -16,6 +16,7 @@ import java.util.Map;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.fabricmc.loader.api.FabricLoader;
@@ -56,12 +57,16 @@ public class Run {
 				}
 				String name;
 				try {
-					name = map.get(mapname).getAsString();
+					JsonElement nm = map.get(mapname);
+					if(nm.isJsonNull()) {
+						continue;
+					} else {
+						name = nm.getAsString();
+					}
 				} catch (NullPointerException e) {
 					System.err.printf("No mapping for %s (named %s) in registry %s!\n", id, mapname, rid);
 					continue;
 				}
-				
 				name2id.putIfAbsent(name, new ArrayList<>());
 				name2id.get(name).add(id);
 			}
@@ -69,7 +74,7 @@ public class Run {
 			Files.createDirectories(Paths.get(outpath));
 			PrintWriter out = new PrintWriter(new FileWriter(new File(outpath + "/" + rid.getPath() + ".nbtdoc")));
 			for(Map.Entry<String, List<Identifier>> ent: name2id.entrySet()) {
-				out.printf("%s describes %s[\n", ent.getKey(), ident2target.get(rid));
+				out.printf("::minecraft::%s describes %s[\n", ent.getKey(), ident2target.get(rid));
 				
 				Iterator<Identifier> iter = ent.getValue().iterator();
 				while(iter.hasNext()) {

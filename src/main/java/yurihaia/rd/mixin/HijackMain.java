@@ -1,4 +1,4 @@
-package mryurihi.rd.mixin;
+package yurihaia.rd.mixin;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import mryurihi.rd.Run;
 import net.minecraft.server.MinecraftServer;
+import yurihaia.rd.Run;
 
 
 @Mixin(MinecraftServer.class)
