@@ -28,16 +28,11 @@ import net.minecraft.util.registry.Registry;
 public class Run {
 	public static void run(String mappingspath, String outpath) throws IOException {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		JsonObject mappings = gson.fromJson(
-			new FileReader(mappingspath),
-			JsonObject.class
-		);
+		JsonObject mappings = gson.fromJson(new FileReader(mappingspath), JsonObject.class);
 		Identifier[] regs = {
-			Registry.REGISTRIES.getId(Registry.ITEM)
+			new Identifier("item")
 		};
-		ImmutableMap<Identifier, String> ident2target = ImmutableMap.of(
-			regs[0], "minecraft:item"
-		);
+		ImmutableMap<Identifier, String> ident2target = ImmutableMap.of(regs[0], "minecraft:item");
 		MappingResolver res = FabricLoader.getInstance().getMappingResolver();
 		PrintWriter mod = new PrintWriter(new FileWriter(new File(outpath + "/mod.nbtdoc")));
 		mod.printf("// Generated info for Minecraft %s\n", MinecraftVersion.create().getName());
@@ -52,7 +47,7 @@ public class Run {
 				String mapname;
 				try {
 					mapname = res.unmapClassName("intermediary", obj.getClass().getName());
-				} catch (IllegalArgumentException e) {
+				} catch(IllegalArgumentException e) {
 					mapname = obj.getClass().getName();
 				}
 				String name;
@@ -63,8 +58,13 @@ public class Run {
 					} else {
 						name = nm.getAsString();
 					}
-				} catch (NullPointerException e) {
-					System.err.printf("No mapping for %s (named %s) in registry %s!\n", id, mapname, rid);
+				} catch(NullPointerException e) {
+					System.err.printf(
+						"No mapping for %s (named %s) in registry %s!\n",
+						id,
+						mapname,
+						rid
+					);
 					continue;
 				}
 				name2id.putIfAbsent(name, new ArrayList<>());
@@ -72,7 +72,9 @@ public class Run {
 			}
 			
 			Files.createDirectories(Paths.get(outpath));
-			PrintWriter out = new PrintWriter(new FileWriter(new File(outpath + "/" + rid.getPath() + ".nbtdoc")));
+			PrintWriter out = new PrintWriter(
+				new FileWriter(new File(outpath + "/" + rid.getPath() + ".nbtdoc"))
+			);
 			for(Map.Entry<String, List<Identifier>> ent: name2id.entrySet()) {
 				out.printf("::minecraft::%s describes %s[\n", ent.getKey(), ident2target.get(rid));
 				
