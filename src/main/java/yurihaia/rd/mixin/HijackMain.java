@@ -14,8 +14,7 @@ import yurihaia.rd.Run;
 public class HijackMain {
 	@Inject(method = "main", at = @At("HEAD"), cancellable = true)
 	private static void hijack(String[] args, CallbackInfo cb) throws IOException {
-		// Let's just fucking hardcode the paths.
-		Run.run("C:\\SPGoding\\Projects\\Yurihaia\\mc-nbtdoc\\generate\\mappings.json", "C:\\SPGoding\\Projects\\Yurihaia\\mc-nbtdoc\\minecraft\\generated");
+		Run.run("%MAPPINGS_FILE_PATH%", "%GENERATED_DIR_PATH%");
 		cb.cancel();
 	}
 }
