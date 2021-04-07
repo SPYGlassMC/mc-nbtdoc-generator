@@ -7,13 +7,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.server.Main;
+import net.minecraft.Bootstrap;
 import yurihaia.rd.Run;
 
-@Mixin(Main.class)
-public class HijackMain {
-	@Inject(method = "main", at = @At("HEAD"), cancellable = true)
-	private static void hijack(String[] args, CallbackInfo cb) throws IOException {
+@Mixin(Bootstrap.class)
+public class HijackBootstrap {
+	@Inject(method = "initialize", at = @At("TAIL"), cancellable = true)
+	private static void hijack(CallbackInfo cb) throws IOException {
 		Run.run("%MAPPINGS_FILE_PATH%", "%GENERATED_DIR_PATH%");
 		cb.cancel();
 	}

@@ -5,7 +5,7 @@
   "mixins": [
   ],
   "server": [
-    "HijackMain"
+    "HijackBootstrap"
   ],
   "injectors": {
     "defaultRequire": 1

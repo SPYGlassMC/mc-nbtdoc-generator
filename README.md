@@ -5,7 +5,7 @@ A [Fabric][fabric] mod to generate item data for [Yurihaia][yurihaia]'s [mc-nbtd
 ## Getting Started
 
 - Replace several variables:
-   - `./src/main/java/yurihaia/rd/mixin/HijackMain.java`:
+   - `./src/main/java/yurihaia/rd/mixin/HijackBootstrap.java`:
       - Replace `%MAPPINGS_FILE_PATH%` with the absolute path to [mc-nbtdoc repository][mc-nbtdoc]'s `./generate/mappings.json` file.
       - Replace `%GENERATED_DIR_PATH%` with the absolute path to [mc-nbtdoc repository][mc-nbtdoc]'s `./minecraft/generated` directory.
    - `./gradle.properties`:
