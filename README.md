@@ -1,6 +1,6 @@
 # NBTDOC-genmod
 
-A [Fabric][fabric] mod to generate item data for [Yurihaia][yurihaia]'s [mc-nbtdoc repository][mc-nbtdoc].
+A [Fabric][fabric] mod made by [Yurihaia][yurihaia] to generate item data for [Yurihaia][yurihaia]'s [mc-nbtdoc repository][mc-nbtdoc].
 
 ## Getting Started
 
