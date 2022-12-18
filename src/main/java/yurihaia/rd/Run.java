@@ -22,8 +22,9 @@ import com.google.gson.JsonObject;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import net.minecraft.MinecraftVersion;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class Run {
 	public static void run(String mappingspath, String outpath) throws IOException {
@@ -41,7 +42,7 @@ public class Run {
 			JsonObject map = mappings.get(rid.toString()).getAsJsonObject();
 			HashMap<String, List<Identifier>> name2id = new HashMap<>();
 			
-			Registry<?> reg = Registry.REGISTRIES.get(rid);
+			Registry<?> reg = Registries.REGISTRIES.get(rid);
 			for(Identifier id: reg.getIds()) {
 				Object obj = reg.get(id);
 				String mapname;
